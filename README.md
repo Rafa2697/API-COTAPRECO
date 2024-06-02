@@ -37,6 +37,10 @@ Inicie o servidor
 - [express](https://expressjs.com/) 
 - [mongoosejs](https://mongoosejs.com/)
 
+## Ferramenta de desenvolvimento
+
+- [VScode](https://code.visualstudio.com/)
+- [Thunder Client](https://www.thunderclient.com/)
 
 ## Referência
 
