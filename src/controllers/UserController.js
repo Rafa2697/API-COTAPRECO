@@ -47,4 +47,19 @@ async function updateUser(request, response){
     return response.status(200).json({response: "update user"})
 }
 
+async function loginUser(request, response){
+    const { ra, senha } = req.body;
+    try {
+      const usuario = await User.collection('usuarios').findOne({ ra: ra });
+      if (usuario && usuario.senha === senha) {
+        // O usuário existe e a senha está correta
+        res.status(200).json({ mensagem: 'Login bem-sucedido' });
+      } else {
+        // Usuário não encontrado ou senha incorreta
+        res.status(401).json({ mensagem: 'Usuário ou senha incorretos' });
+      }
+    } catch (error) {
+      res.status(500).json({ mensagem: 'Erro no servidor' });
+    }
+}
 export {getUsers,createUser, deleteUser, updateUser}
