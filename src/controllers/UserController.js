@@ -50,7 +50,7 @@ async function updateUser(request, response){
 async function loginUser(request, response){
     const { ra, senha } = req.body;
     try {
-      const usuario = await User.collection('usuarios').findOne({ ra: ra });
+      const usuario = await User.findOne({ ra: ra });
       if (usuario && usuario.senha === senha) {
         // O usuário existe e a senha está correta
         res.status(200).json({ mensagem: 'Login bem-sucedido' });
@@ -62,4 +62,4 @@ async function loginUser(request, response){
       res.status(500).json({ mensagem: 'Erro no servidor' });
     }
 }
-export {getUsers,createUser, deleteUser, updateUser}
+export {getUsers,createUser, deleteUser, updateUser, loginUser}
