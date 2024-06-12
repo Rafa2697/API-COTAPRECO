@@ -1,4 +1,5 @@
 import User from '../models/usuarios.js'
+import mongoose from 'mongoose';
 
 async function getUsers(request, response){
     const nome = request.query.nome;
@@ -47,19 +48,28 @@ async function updateUser(request, response){
     return response.status(200).json({response: "update user"})
 }
 
-async function loginUser(request, response){
-    const { ra, senha } = req.body;
-    try {
-      const usuario = await User.findOne({ ra: ra });
-      if (usuario && usuario.senha === senha) {
-        // O usuário existe e a senha está correta
-        res.status(200).json({ mensagem: 'Login bem-sucedido' });
-      } else {
-        // Usuário não encontrado ou senha incorreta
-        res.status(401).json({ mensagem: 'Usuário ou senha incorretos' });
-      }
-    } catch (error) {
-      res.status(500).json({ mensagem: 'Erro no servidor' });
+async function loginUser(request, response) {
+  const { ra, senha } = request.body;
+  try {
+    const usuario = await User.findOne({ ra });
+    if (!usuario) {
+      console.log('Usuário não encontrado para o RA:', ra);
+      return response.status(401).json({ mensagem: 'Usuário ou senha incorretos' });
     }
+
+    // const senhaValida = await usuario.validarSenha(senha);
+    if (senha != usuario.senha) {
+      console.log('Senha inválida para o usuário:', usuario.nome);
+      return response.status(401).json({ mensagem: 'Usuário ou senha incorretos' });
+    }
+
+    console.log('Login bem-sucedido para o usuário:', usuario.nome);
+    response.status(200).json({ mensagem: 'Login bem-sucedido' });
+  } catch (error) {
+    console.error('Erro ao tentar login:', error);
+    response.status(500).json({ mensagem: 'Erro no servidor' });
+  }
 }
+
+  
 export {getUsers,createUser, deleteUser, updateUser, loginUser}

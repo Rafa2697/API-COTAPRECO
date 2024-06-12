@@ -1,5 +1,7 @@
 
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+
 const { Schema } = mongoose;
 
 
@@ -15,5 +17,8 @@ const userSchema = new Schema({
     }
 })
 
+userSchema.methods.validarSenha = async function(senhaCandidata) {
+    return await bcrypt.compare(senhaCandidata, this.senha);
+  };
 
 export default mongoose.model('user', userSchema)
