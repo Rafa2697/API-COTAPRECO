@@ -1,5 +1,5 @@
 import User from '../models/usuarios.js'
-import mongoose from 'mongoose';
+
 
 async function getUsers(request, response){
     const nome = request.query.nome;
@@ -57,7 +57,7 @@ async function loginUser(request, response) {
       return response.status(401).json({ mensagem: 'Usuário ou senha incorretos' });
     }
 
-    // const senhaValida = await usuario.validarSenha(senha);
+    
     if (senha != usuario.senha) {
       console.log('Senha inválida para o usuário:', usuario.nome);
       return response.status(401).json({ mensagem: 'Usuário ou senha incorretos' });
