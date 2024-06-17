@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { getUsers, createUser, deleteUser, updateUser, loginUser } from "./controllers/UserController.js"
 import { getCity, createCity, deleteCity } from './controllers/cityController.js';
-import { createEstabli, getEstabli, deleteEstabli } from './controllers/establishmentController.js';
+import { createEstabli, getEstabli, deleteEstabli, updateEstabli } from './controllers/establishmentController.js';
 
 const routes = Router();
 //CRUD de usuarios
@@ -19,7 +19,8 @@ routes.delete('/cities/:id', deleteCity)
 
 //endpoint estabelecimentos
 routes.get('/establishments', getEstabli)
-routes.get('/establishments', createEstabli)
-routes.get('/establishments/:id', deleteEstabli)
+routes.post('/establishments', createEstabli)
+routes.delete('/establishments/:id', deleteEstabli)
+routes.put('/establishments/:id', updateEstabli) 
 
 export default routes
