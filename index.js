@@ -8,8 +8,6 @@ app.use(express.json())
 app.use(routes)
 
 
-
-
 connectDatabase()
     .then(() =>{
         app.listen(3000, function () {

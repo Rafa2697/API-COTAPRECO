@@ -11,6 +11,10 @@ const establishmentSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cidade'
     },
+    categoria:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Categoria'
+    },
     createdAt: {
         type: Date,
         default: Date.now
