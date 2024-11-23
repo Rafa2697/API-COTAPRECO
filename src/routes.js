@@ -3,7 +3,7 @@ import { getUsers, createUser, deleteUser, updateUser, loginUser } from "./contr
 import { getCity, createCity, deleteCity } from './controllers/cityController.js';
 import { createEstabli, getEstabli, deleteEstabli, updateEstabli } from './controllers/establishmentController.js';
 import {createProduct, getProduct, deleteProduct, updateProduct } from './controllers/productController.js'
-import {getCat, createCat, deleteCat, updateCat} from './controllers/catController.js'
+import {getCat, createCat, deleteCat, updateCat, getCatId} from './controllers/catController.js'
 
 const routes = Router();
 //CRUD de usuarios
@@ -33,6 +33,7 @@ routes.put('/product/:id', updateProduct)
 
 //endpoint categoria
 routes.get('/category', getCat)
+routes.get('/category/:id', getCatId)
 routes.post('/category', createCat)
 routes.delete('/category/:id', deleteCat)
 routes.put('/category/:id', updateCat) 
